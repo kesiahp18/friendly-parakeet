@@ -28,8 +28,6 @@ var generatePassword = function() {
     return generatePassword();
   }
 
-  debugger;
-
   //Add character types chosen by user to the array of possible characters
   var charOption = [];
   if (confirmLower) {
