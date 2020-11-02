@@ -23,6 +23,37 @@ var generatePassword = function() {
 
   //Determine how many types of characters the user chose
   var typeAmmount = (confirmLower + confirmUpper + confirmNumber + confirmSpecial);
+  if (typeAmmount === 0){
+    window.alert("You need to choose at lease one option");
+    return generatePassword();
+  }
+
+  debugger;
+
+  //Add character types chosen by user to the array of possible characters
+  var charOption = [];
+  if (confirmLower) {
+    charOption = charOption.concat(asciiLower)
+  }
+  if (confirmUpper) {
+    charOption = charOption.concat(asciiUpper)
+  }
+  if (confirmNumber) {
+    charOption = charOption.concat(asciiNumber)
+  }
+  if (confirmSpecial) {
+    charOption = charOption.concat(asciiSpecial)
+  }
+
+  //Set up array to be length of password
+  var passwordCharacters = []
+  for (let i = 0; i < passLength; i++) {
+    //generate a random number and convert it into its ascii character
+    var characterCodes = charOption[Math.floor(Math.random() * charOption.length)];
+    passwordCharacters.push(String.fromCharCode(characterCodes));
+  }
+  //turn password array into a string
+  return passwordCharacters.join("");
 }
 
 //Assign characters to an array of their character type
@@ -45,9 +76,6 @@ var asciiSpecial = charRange(33, 47).concat(
   ).concat (
   charRange(123, 126)
 )
-
-console.log(asciiLower, asciiUpper, asciiNumber, asciiSpecial);
-
 
 //END OF ASSIGNMENT CODE
 
